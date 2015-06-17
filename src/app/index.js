@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('uamProject', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap'])
+angular.module('uamProject', [
+  'ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap',
+  'uamProject.create'
+  ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {

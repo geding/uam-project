@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('uamProject')
-				.controller('CreateCtrl', CreateCtrl);
+        .module('uamProject.create')
+		.controller('CreateCtrl', CreateCtrl);
 
 		function CreateCtrl($scope) {
 				$scope.emails = [];

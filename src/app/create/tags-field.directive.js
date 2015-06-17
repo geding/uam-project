@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('uamProject')
+        .module('uamProject.create')
         .directive('tagsField', tagsField);
 
         function tagsField() {
@@ -11,7 +11,7 @@
             scope: {
               param: "="
             },
-            templateUrl: 'view/tags-field.html',
+            templateUrl: 'app/create/view/tags-field.html',
             controller: function ($scope, $element, $attrs) {
               $scope.inputTags = [];
 
