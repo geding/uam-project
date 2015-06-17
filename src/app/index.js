@@ -7,8 +7,12 @@ angular.module('uamProject', ['ngAnimate', 'ngCookies', 'ngSanitize', 'ngResourc
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl'
+      })
+      .state('create', {
+        url: '/create',
+        templateUrl: 'app/create/view/create.html',
+        controller: 'CreateCtrl'
       });
-
     $urlRouterProvider.otherwise('/');
   })
 ;
