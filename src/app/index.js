@@ -2,7 +2,7 @@
 
 angular.module('uamProject', [
   'ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap',
-  'uamProject.create'
+  'uamProject.create', 'uamProject.inbox', 'uamProject.view'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

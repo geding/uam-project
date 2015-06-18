@@ -10,11 +10,13 @@
       send: function(email) {
         email.id =  Date.now();
         email.sent = Date.now();
-        console.log(email);
         return $http.post('http://localhost:8080/sent', email);
       },
       get: function(emailId) {
           return $http.get('http://localhost:8080/emails/' + emailId);
+      },
+      delete: function(emailId) {
+          return $http.delete('http://localhost:8080/emails/' + emailId);
       }
     }
   }

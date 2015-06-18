@@ -5,9 +5,10 @@
         .module('uamProject.create')
 		.controller('CreateCtrl', CreateCtrl);
 
-		function CreateCtrl($scope, $stateParams, mailService) {
+		function CreateCtrl($scope, $stateParams, mailService, $location) {
 				$scope.receivers = [];
         $scope.alerts = [];
+        $scope.fireRequired = false;
 
         $scope.validateEmail = function(email) {
           var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -40,12 +41,15 @@
             && email.receivers.length > 0
             && email.content !== undefined
             && email.content !== ""){
+              $scope.fireRequired = false;
               mailService.send(email).success(function(){
-                $scope.alerts.push({type: 'success', msg: 'Mail sent.'});
+                //relocate to sent
+                $location.path('/sent', false);
               }).error(function(){
                 $scope.alerts.push({type: 'danger', msg: 'There was an error.'});
               });
           } else {
+            $scope.fireRequired = true;
             $scope.alerts.push({type: 'danger', msg: 'Fields should not be blank.'});
           }
         }
