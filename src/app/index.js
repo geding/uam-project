@@ -15,7 +15,12 @@ angular.module('uamProject', [
         url: '/create',
         templateUrl: 'app/create/view/create.html',
         controller: 'CreateCtrl'
+      })
+      .state('createReply', {
+        url: '/create/{emailId:int}',
+        templateUrl: 'app/create/view/create.html',
+        controller: 'CreateCtrl'
       });
+    $urlRouterProvider.when('/create/', '/create');  
     $urlRouterProvider.otherwise('/');
-  })
-;
+  });
