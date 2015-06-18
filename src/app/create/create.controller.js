@@ -5,9 +5,14 @@
         .module('uamProject.create')
 		.controller('CreateCtrl', CreateCtrl);
 
-		function CreateCtrl($scope, $stateParams, $timeout, mailService) {
+		function CreateCtrl($scope, $stateParams, mailService) {
 				$scope.receivers = [];
         $scope.alerts = [];
+
+        $scope.validateEmail = function(email) {
+          var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+          return re.test(email);
+        };
 
         if($stateParams.emailId !== undefined) {
           // create in reply of

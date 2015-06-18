@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -11,6 +13,83 @@
   img.pull-right {
     width: 50px;
   }
+}
+
+body {
+    background-color:#F7F7F7;
+    font-family: 'Open Sans', sans-serif;
+}
+
+nav.navbar {
+  border-radius: 0 !important;
+  background: #fff;
+
+  li.active a{
+    background-color: #f2f2f2 !important;
+  }
+}
+
+.content-container {
+    background-color:#fff !important;
+    padding:2em 3em;
+    margin:1em auto;
+}
+
+h1.content-title{
+    font-size:32px;
+    font-weight:300;
+    text-align:center;
+    margin-top:0;
+    margin-bottom:20px;
+    font-family: 'Open Sans', sans-serif!important;
+}
+
+
+/*mail list*/
+ul.mail-list{
+    padding:0;
+    margin:0;
+    list-style:none;
+    margin-top:30px;
+    li {
+      a{
+          display:block;
+          border-bottom:1px dotted #CFCFCF;
+          padding:20px;
+          text-decoration:none;
+
+          &:hover{
+              background-color:#DBF9FF;
+          }
+      }
+
+      &:last-child a{
+          border-bottom:none;
+      }
+
+      span{
+          display:block;
+
+          &.mail-sender{
+              font-weight:600;
+              color:#8F8F8F;
+          }
+
+          &.mail-subject{
+              color:#8C8C8C;
+          }
+
+          &.mail-message-preview{
+              display:block;
+              color:#A8A8A8;
+          }
+      }
+
+    }
+}
+
+.mail-search{
+    border-bottom-color:#7FBCC9!important;
 }
 
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject

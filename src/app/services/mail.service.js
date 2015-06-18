@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('uamProject.create')
+    .module('uamProject')
     .service('mailService', mailService);
 
   function mailService($http){

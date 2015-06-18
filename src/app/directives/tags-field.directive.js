@@ -5,18 +5,14 @@
         .module('uamProject.create')
         .directive('tagsField', tagsField);
 
-        function validateEmail(email) {
-          var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-          return re.test(email);
-        }
-
         function tagsField() {
           return {
             restrict: 'E',
             scope: {
-              inputTags: "="
+              inputTags: "=",
+              validateFunction: "="
             },
-            templateUrl: 'app/create/view/tags-field.html',
+            templateUrl: 'app/directives/tags-field.directive.html',
             controller: function ($scope, $element, $attrs) {
               $scope.tagText = '';
 
@@ -28,9 +24,13 @@
               });
 
             	$scope.addTag = function() {
-            		if ($scope.tagText.length == 0 || !validateEmail($scope.tagText)) {
+            		if ($scope.tagText.length == 0) {
             			return;
             		}
+                if ($scope.validateFunction !== undefined
+                  && !$scope.validateFunction($scope.tagText)){
+                  return;
+                }
 
             		$scope.inputTags.push({name: $scope.tagText});
             		$scope.tagText = '';
