@@ -23,6 +23,9 @@
       },
       delete: function(emailId) {
           return $http.delete('http://localhost:8080/emails/' + emailId);
+      },
+      deleteSent: function(emailId) {
+          return $http.delete('http://localhost:8080/sent/' + emailId);
       }
     }
   }

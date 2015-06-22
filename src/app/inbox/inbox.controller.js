@@ -6,7 +6,9 @@
 		.controller('InboxCtrl', InboxCtrl);
 
 		function InboxCtrl($scope) {
-
+            $scope.remove = function(){
+                console.log('in');
+            }
 		}
 
 })();

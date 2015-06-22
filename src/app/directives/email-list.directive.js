@@ -13,7 +13,7 @@
               type: "@"
             },
             templateUrl: 'app/directives/email-list.directive.html',
-            controller: function ($scope, $sce, $stateParams, filterFilter, $filter,  mailService) {
+            controller: function ($scope, $sce, $stateParams, filterFilter, $filter,  mailService, $interval) {
                 $scope.filteredEmails = []
                 $scope.itemsPerPage = 15;
                 $scope.currentPage = 1;
@@ -33,19 +33,37 @@
                     $scope.figureOutEmailsToDisplay();
                 };
 
-                if ($scope.type == 'inbox') {
-                  mailService.inboxList().success(function(data){
-                    emails = $filter('orderBy')(data, '-received', false);
-                    $scope.emails = emails;
-                    $scope.figureOutEmailsToDisplay();
-                  });
-                } else {
-                  mailService.outboxList().success(function(data){
-                    emails = $filter('orderBy')(data, '-sent', false);
-                    $scope.emails = emails;
-                    $scope.figureOutEmailsToDisplay();
-                  });
+                var updateMailsList = function(type){
+                  if (type == 'inbox') {
+                    mailService.inboxList().success(function(data){
+                      emails = $filter('orderBy')(data, '-received', false);
+                      $scope.emails = emails;
+                      $scope.figureOutEmailsToDisplay();
+                    });
+                  } else {
+                    mailService.outboxList().success(function(data){
+                      emails = $filter('orderBy')(data, '-sent', false);
+                      $scope.emails = emails;
+                      $scope.figureOutEmailsToDisplay();
+                    });
+                  }
                 }
+                updateMailsList($scope.type);
+                $interval(function() {
+                    updateMailsList($scope.type)
+                    console.log('updated')
+                }, $scope.refreshTime * 1000);
+
+
+                $scope.remove = function(mailId){
+                  if ($scope.type == 'inbox') {
+                    mailService.delete(mailId);
+                  } else {
+                    mailService.deleteSent(mailId);
+                  }
+                  updateMailsList($scope.type);
+                }
+
 
 
                 $scope.highlight = function(text, search) {
