@@ -1,41 +1,19 @@
 <h1 class="content-title">Inbox</h1>
 
-<input type="search" placeholder="Search Mail" class="form-control mail-search" />
+<input type="search" ng-model="search.sender" placeholder="Search Mail" class="form-control mail-search" />
 
 <ul class="mail-list">
-   <li>
+   <li ng-repeat="email in filteredEmails | filter:search">
        <a href="">
-           <span class="mail-sender">You Tube</span>
+           <span class="mail-sender">{{email.sender}}</span>
            <span class="mail-subject">New subscribers!</span>
            <span class="mail-message-preview">You have ten more subscriptions click her...</span>
        </a>
    </li>
-   <li>
-       <a href="">
-           <span class="mail-sender">You Tube</span>
-           <span class="mail-subject">New subscribers!</span>
-           <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-       </a>
-   </li>
-   <li>
-       <a href="">
-           <span class="mail-sender">You Tube</span>
-           <span class="mail-subject">New subscribers!</span>
-           <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-       </a>
-   </li>
-   <li>
-       <a href="">
-           <span class="mail-sender">You Tube</span>
-           <span class="mail-subject">New subscribers!</span>
-           <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-       </a>
-   </li>
-   <li>
-       <a href="">
-           <span class="mail-sender">You Tube</span>
-           <span class="mail-subject">New subscribers!</span>
-           <span class="mail-message-preview">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil eveniet ipsum nisi? Eaque odio quae debitis saepe explicabo alias sit tenetur animi...</span>
-       </a>
-   </li>
+   <pagination boundary-links="true"
+    max-size="5"
+    items-per-page="itemsPerPage"
+    total-items="totalItems"
+    ng-model="currentPage"
+    ng-change="pageChanged()"></pagination>
 </ul>
