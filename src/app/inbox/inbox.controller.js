@@ -5,7 +5,7 @@
         .module('uamProject.inbox')
 		.controller('InboxCtrl', InboxCtrl);
 
-		function InboxCtrl($scope, $stateParams, filterFilter, mailService) {
+		function InboxCtrl($scope, $stateParams, filterFilter, $filter,  mailService) {
             $scope.filteredEmails = []
             $scope.itemsPerPage = 15;
             $scope.currentPage = 1;
@@ -25,13 +25,14 @@
                 $scope.figureOutEmailsToDisplay();
             };
 
-            mailService.get().success(function(data){
-                emails = data;
-                // $scope.emails = emails;
+            mailService.list().success(function(data){
+                emails = $filter('orderBy')(data, '-received', false);
+
                 $scope.figureOutEmailsToDisplay();
             });
 
             $scope.$watch('search', function (newVal, oldVal) {
+
                 $scope.filteredEmails = filterFilter(emails, newVal);
                 $scope.totalItems = emails.length;
                 console.log('search');

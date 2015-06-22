@@ -15,7 +15,7 @@
       get: function(emailId) {
           return $http.get('http://localhost:8080/emails/' + emailId);
       },
-      get: function() {
+      list: function() {
           return $http.get('http://localhost:8080/emails/');
       },
       delete: function(emailId) {

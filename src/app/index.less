@@ -54,17 +54,26 @@ ul.mail-list{
     margin:0;
     list-style:none;
     margin-top:30px;
-    li {
-      a{
-          display:block;
-          border-bottom:1px dotted #CFCFCF;
-          padding:20px;
-          text-decoration:none;
+    li.mail {
 
-          &:hover{
-              background-color:#DBF9FF;
-          }
-      }
+        display:block;
+        border-bottom:1px dotted #CFCFCF;
+        padding:20px;
+        text-decoration:none;
+
+        .not-readed{
+          font-weight:strong;
+          color: black;
+        }
+        .readed{
+          font-style: italic;
+          color:#8C8C8C;
+         }
+
+        &:hover{
+            background-color:#DBF9FF;
+        }
+
 
       &:last-child a{
           border-bottom:none;
@@ -74,12 +83,14 @@ ul.mail-list{
           display:block;
 
           &.mail-sender{
-              font-weight:600;
+              font-weight:normal;
               color:#8F8F8F;
           }
 
           &.mail-subject{
-              color:#8C8C8C;
+              font-weight:600;
+
+              font-size: 2rem;
           }
 
           &.mail-message-preview{
