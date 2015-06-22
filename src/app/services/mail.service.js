@@ -15,8 +15,11 @@
       get: function(emailId) {
           return $http.get('http://localhost:8080/emails/' + emailId);
       },
-      list: function() {
+      inboxList: function() {
           return $http.get('http://localhost:8080/emails/');
+      },
+      outboxList: function() {
+          return $http.get('http://localhost:8080/sent/');
       },
       delete: function(emailId) {
           return $http.delete('http://localhost:8080/emails/' + emailId);

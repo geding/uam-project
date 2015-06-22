@@ -2,7 +2,7 @@
 
 angular.module('uamProject', [
   'ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap',
-  'uamProject.create', 'uamProject.inbox', 'uamProject.view'
+  'uamProject.create', 'uamProject.inbox', 'uamProject.sent', 'uamProject.view'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -10,6 +10,11 @@ angular.module('uamProject', [
         url: '/inbox',
         templateUrl: 'app/inbox/inbox.html',
         controller: 'InboxCtrl'
+      })
+      .state('sent', {
+        url: '/sent',
+        templateUrl: 'app/sent/sent.html',
+        controller: 'SentCtrl'
       })
       .state('create', {
         url: '/create',
