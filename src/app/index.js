@@ -27,9 +27,12 @@ angular.module('uamProject', [
         controller: 'CreateCtrl'
       })
       .state('view', {
-        url: '/view/{emailId:int}',
+        url: '/view/{emailId:int}?type',
         templateUrl: 'app/view/view.html',
-        controller: 'ViewCtrl'
+        controller: 'ViewCtrl',
+        params: {
+          type : 'inbox'
+        }
       });
     $urlRouterProvider.when('/create/', '/create');
     $urlRouterProvider.otherwise('/inbox');

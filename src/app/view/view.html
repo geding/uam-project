@@ -2,9 +2,9 @@
 
 <div class="form-horizontal" ng-show="email">
     <div class="form-group">
-        <label for="name" class="col-sm-1 control-label">Sender</label>
+        <label for="name" class="col-sm-1 control-label">{{(type == "inbox") ? "Sender" : "Receivers"}}</label>
         <div class="col-sm-11">
-          <span class="form-control field">{{email.sender}}</span>
+          <span class="form-control field">{{(type == "inbox") ? email.sender : email.receivers.join(", ")}}</span>
         </div>
     </div>
     <div class="form-group">
@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="subject" class="col-sm-1 control-label">Received</label>
+        <label for="subject" class="col-sm-1 control-label">{{(type == "inbox") ? "Received" : "Sent"}}</label>
         <div class="col-sm-11">
-          <span class="form-control field">{{email.received.toLocaleFormat('%r - %A - %d %B %Y')}}</span>
+          <span class="form-control field">{{((type == "inbox") ? email.received : email.sent).toLocaleFormat('%r - %A - %d %B %Y')}}</span>
         </div>
     </div>
     <div class="form-group">
@@ -26,8 +26,15 @@
         </div>
     </div>
     <div class="form-group">
-      <div>
-          <input id="delete" name="delete" type="submit" value="Delete" class="center btn btn-danger" ng-click="delete()">
+      <div class="row">
+        <div class="col-sm-6">
+          <input id="delete" name="delete" type="submit" value="Delete"
+          class="float-right btn btn-danger" ng-click="delete()">
+        </div>
+        <div class="col-sm-6">
+          <input ui-sref="createReply({emailId:email.id})" ng-show="type=='inbox'" id="reply" name="reply" type="submit" value="Reply"
+          class="float-left btn btn-primary">
+        </div>
       </div>
     </div>
 </div>

@@ -5,7 +5,7 @@
         .module('uamProject.create')
 		.controller('CreateCtrl', CreateCtrl);
 
-		function CreateCtrl($scope, $stateParams, mailService, $location) {
+		function CreateCtrl($scope, $stateParams, mailService, $location, $state) {
 				$scope.receivers = [];
         $scope.alerts = [];
         $scope.fireRequired = false;
@@ -43,8 +43,7 @@
             && email.content !== ""){
               $scope.fireRequired = false;
               mailService.send(email).success(function(){
-                //relocate to sent
-                $location.path('/sent', false);
+                $state.go('sent', {}, {reload: true});
               }).error(function(){
                 $scope.alerts.push({type: 'danger', msg: 'There was an error.'});
               });
