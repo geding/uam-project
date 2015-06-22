@@ -92,6 +92,31 @@ app.delete('/emails/:id', function (req, res) {
 	}
 });
 
+app.delete('/sent/:id', function (req, res) {
+	var emailIndex = _.findIndex(sent, function (email) {
+		return email.id === req.params.id;
+	});
+
+	if (emailIndex === -1) {
+		res.status(404).send('Email not found');
+	} else {
+		res.json(sent.splice(emailIndex, 1)[0]);
+	}
+});
+
+
+app.get('/sent/:id', function (req, res) {
+	var record = _.find(sent, function (email) {
+		return email.id === req.params.id;
+	});
+
+	if (!record) {
+		res.status(404).send('Email not found');
+	} else {
+		res.json(record);
+	}
+});
+
 
 app.get('/sent', function (req, res) {
 	setTimeout(function () {
