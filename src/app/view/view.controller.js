@@ -12,23 +12,15 @@
         sufix = "Sent"
       }
 
-      mailService["get"+sufix]($stateParams.emailId).success(function(data){
-        data.read = true;
-        if($scope.type == "inbox"){
-          mailService.put(data).success(function(data){
-            $scope.email = data;
-            $scope.email.received = new Date($scope.email.received);
-            $scope.email.sent = new Date($scope.email.sent);
-          }).error(function(e){
-            $scope.errorMsg = e;
-          });
-        } else {
-          $scope.email = data;
-          $scope.email.received = new Date($scope.email.received);
-          $scope.email.sent = new Date($scope.email.sent);
+      mailService["get"+sufix]($stateParams.emailId).then(function(result){
+        $scope.email = result.data;
+        $scope.email.received = new Date($scope.email.received);
+        $scope.email.sent = new Date($scope.email.sent);
+      }).catch(function(result){
+        if(result.status == 0){
+          result.statusText = "Connection error";
         }
-      }).error(function(e){
-        $scope.errorMsg = e;
+        $scope.errorMsg = result.statusText;
       });
 
       $scope.delete = function(){
