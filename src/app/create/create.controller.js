@@ -17,10 +17,16 @@
 
         if($stateParams.emailId !== undefined) {
           // create in reply of
-          mailService.get($stateParams.emailId).success(function(data){
+          mailService.get($stateParams.emailId).then(function(result){
+            var data = result.data;
             $scope.receivers.push({name: data.sender});
             $scope.title = "Re: " + data.title;
             $scope.content = "\n\n==== In reply on ====\n\n" + data.content;
+          }).catch(function(result){
+            if(!result.data){
+              result.data = "Connection error";
+            }
+            $scope.alerts.push({type: 'danger', msg: result.data});
           });
         }
 

@@ -17,10 +17,10 @@
         $scope.email.received = new Date($scope.email.received);
         $scope.email.sent = new Date($scope.email.sent);
       }).catch(function(result){
-        if(result.status == 0){
-          result.statusText = "Connection error";
+        if(!result.data){
+          result.data = "Connection error";
         }
-        $scope.errorMsg = result.statusText;
+        $scope.errorMsg = result.data;
       });
 
       $scope.delete = function(){
