@@ -1,0 +1,22 @@
+<input name="title" type="search" ng-model="search.title" placeholder="Search Mail" class="form-control mail-search" autocomplete="on"/>
+
+<ul class="mail-list">
+
+   <li class="mail" ng-repeat="email in filteredEmails | filter:search">
+           <span class="mail-sender">{{(type=="inbox") ? "From: " + email.sender : "Receivers: " + email.receivers.join(", ")}}</span>
+           <span ng-click="remove(email.id)" class='btn btn-danger glyphicon glyphicon-remove pull-right'></span>
+           <span ng-show="email.received" class="mail-data pull-right">Received: {{email.received | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+           <span ng-show="email.sent" class="mail-data pull-right">Sent: {{email.sent | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+
+           <a ui-sref="view({emailId:email.id,type:type})"><span ng-class="email.read ? 'readed' : 'not-readed'" class="mail-subject" ng-bind-html="highlight(email.title, search.title)"></span></a>
+           <span class="mail-message-preview">{{email.content | limitTo: 150}}{{email.content.length < 150 ? '' : '...'}}</span>
+
+
+   </li>
+   <pagination boundary-links="true"
+    max-size="5"
+    items-per-page="itemsPerPage"
+    total-items="totalItems"
+    ng-model="currentPage"
+    ng-change="pageChanged()"></pagination>
+</ul>

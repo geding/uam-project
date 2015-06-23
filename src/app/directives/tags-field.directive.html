@@ -1,0 +1,8 @@
+<div>
+  <div ng-repeat="(key, tag) in inputTags" class="input-tag">
+    {{ tag.name }}
+    <div class="delete-tag" ng-click="deleteTag(key)">&times;</div>
+  </div>
+
+  <input type="text" ng-model="tagText" ng-style="{'width' : inputWidth + 'px'}">
+</div>

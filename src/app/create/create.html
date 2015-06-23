@@ -1,0 +1,29 @@
+<h1 class="center content-title">Create</h1>
+
+<form class="form-horizontal">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="alertClose($index)">{{alert.msg}}</alert>
+
+    <div class="form-group">
+        <label for="name" class="col-sm-1 control-label">Receivers</label>
+        <div class="col-sm-11">
+          <tags-field ng-class="{required: fireRequired&&receivers.length==0}" input-tags="receivers" validate-function="validateEmail"></tags-field>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-sm-1 control-label">Title</label>
+        <div class="col-sm-11">
+            <input ng-model="title" ng-class="{required: fireRequired&&!title}" type="text" class="form-control" id="title" name="title" placeholder="Enter message title" value=""></input>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-sm-1 control-label">Content</label>
+        <div class="col-sm-11">
+            <textarea ng-model="content" ng-class="{required: fireRequired&&!content}" class="form-control" rows="16" name="content" placeholder="Enter message content"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div>
+            <input id="submit" name="submit" type="submit" value="Send" class="center btn btn-primary" ng-click="send()">
+        </div>
+    </div>
+</div>

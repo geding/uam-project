@@ -11,6 +11,28 @@ var invalidRequest = function (req, res) {
 	};
 };
 
+
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    // Pass to next layer of middleware
+    next();
+});
+
+
 app.use(express.static(__dirname + '/../'));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -67,6 +89,31 @@ app.delete('/emails/:id', function (req, res) {
 		res.status(404).send('Email not found');
 	} else {
 		res.json(emails.splice(emailIndex, 1)[0]);
+	}
+});
+
+app.delete('/sent/:id', function (req, res) {
+	var emailIndex = _.findIndex(sent, function (email) {
+		return email.id === req.params.id;
+	});
+
+	if (emailIndex === -1) {
+		res.status(404).send('Email not found');
+	} else {
+		res.json(sent.splice(emailIndex, 1)[0]);
+	}
+});
+
+
+app.get('/sent/:id', function (req, res) {
+	var record = _.find(sent, function (email) {
+		return email.id === req.params.id;
+	});
+
+	if (!record) {
+		res.status(404).send('Email not found');
+	} else {
+		res.json(record);
 	}
 });
 

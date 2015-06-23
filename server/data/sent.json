@@ -1,6 +1,6 @@
 [
   {
-    "id": 1421610518917,
+    "id": "1421610518917",
     "title": "test1",
     "content": "Cos tam",
     "receivers": [
@@ -9,39 +9,59 @@
     "sent": 1421610518917
   },
   {
-    "id": 1421610528931,
+    "id": "1421610528931",
     "title": "test2",
-    "content": "Cos tam",
+    "content": "Cos tam2",
     "receivers": [
       "sosnowski@outlook.com"
     ],
     "sent": 1421610528931
   },
   {
-    "id": 1433279831521,
-    "title": "nenenen",
-    "content": "Cos tam",
+    "id": "1433279831521",
+    "title": "test3",
+    "content": "Cos tam3",
     "receivers": [
       "sosnowski@outlook.com"
     ],
     "sent": 1433279831521
   },
   {
-    "id": 1433279842324,
-    "title": "nenenen",
-    "content": "Cos tam",
+    "title": "okok",
     "receivers": [
-      "sosnowski@outlook.com"
+      "sadf@123.pl"
     ],
-    "sent": 1433279842324
+    "content": "push",
+    "id": "1435010334435",
+    "sent": 1435010334435
   },
   {
-    "id": 1433280001205,
-    "title": "aaaaaa",
-    "content": "Cos tam",
+    "title": "Mail title",
     "receivers": [
-      "sosnowski@outlook.com"
+      "asd@asd.pl"
     ],
-    "sent": 1433280001205
+    "content": "oko k",
+    "id": "1435012828616",
+    "sent": 1435012828616
+  },
+  {
+    "title": "okadsdas",
+    "receivers": [
+      "asda@adsda.pl"
+    ],
+    "content": "asdasd",
+    "id": "1435012862601",
+    "sent": 1435012862601
+  },
+  {
+    "title": "Tytul",
+    "receivers": [
+      "jedenMail@wp.pl",
+      "drugiMail@asda.pl",
+      "nawetTrzeci@zxc.com"
+    ],
+    "content": "Body body asd",
+    "id": "1435015183442",
+    "sent": 1435015183442
   }
 ]
