@@ -6,7 +6,7 @@
 		.controller('IndexCtrl', IndexCtrl);
 
 		function IndexCtrl($scope, localStorageService) {
-      $scope.backgroundColor = localStorageService.get('backgroundColor') || "#e7e7e7";
+      $scope.backgroundColor = localStorageService.get('backgroundColor') || '#e7e7e7';
       $scope.refreshTime = localStorageService.get('refreshTime') || 30;
 
       $scope.$watch('backgroundColor', function () {

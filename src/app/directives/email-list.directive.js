@@ -9,12 +9,12 @@
           return {
             restrict: 'E',
             scope: {
-              refreshTime: "@",
-              type: "@"
+              refreshTime: '@',
+              type: '@'
             },
             templateUrl: 'app/directives/email-list.directive.html',
             controller: function ($scope, $sce, $stateParams, filterFilter, $filter,  mailService, $interval) {
-                $scope.filteredEmails = []
+                $scope.filteredEmails = [];
                 $scope.itemsPerPage = 15;
                 $scope.currentPage = 1;
                 $scope.totalItems = 1;
@@ -34,7 +34,7 @@
                 };
 
                 var updateMailsList = function(type){
-                  if (type == 'inbox') {
+                  if (type === 'inbox') {
                     mailService.inboxList().success(function(data){
                       emails = $filter('orderBy')(data, '-received', false);
                       $scope.emails = emails;
@@ -47,25 +47,26 @@
                       $scope.figureOutEmailsToDisplay();
                     });
                   }
-                }
+                };
+
                 updateMailsList($scope.type);
                 var interval = $interval(function() {
-                    updateMailsList($scope.type)
-                    console.log('updated')
+                    updateMailsList($scope.type);
+                    console.log('updated');
                 }, $scope.refreshTime * 1000);
 
-                $scope.$on("$destroy", function(){
+                $scope.$on('$destroy', function(){
                     clearInterval(interval);
                 });
 
                 $scope.remove = function(mailId){
-                  if ($scope.type == 'inbox') {
+                  if ($scope.type === 'inbox') {
                     mailService.delete(mailId);
                   } else {
                     mailService.deleteSent(mailId);
                   }
                   updateMailsList($scope.type);
-                }
+                };
 
 
 
