@@ -20,11 +20,11 @@
           mailService.get($stateParams.emailId).then(function(result){
             var data = result.data;
             $scope.receivers.push({name: data.sender});
-            $scope.title = "Re: " + data.title;
-            $scope.content = "\n\n==== In reply on ====\n\n" + data.content;
+            $scope.title = 'Re: ' + data.title;
+            $scope.content = '\n\n==== In reply on ====\n\n' + data.content;
           }).catch(function(result){
             if(!result.data){
-              result.data = "Connection error";
+              result.data = 'Connection error';
             }
             $scope.alerts.push({type: 'danger', msg: result.data});
           });
@@ -43,10 +43,10 @@
             content: $scope.content
           };
 
-          if(email.title != undefined
-            && email.receivers.length > 0
-            && email.content !== undefined
-            && email.content !== ""){
+          if(email.title !== undefined &&
+            email.receivers.length > 0 &&
+            email.content !== undefined &&
+            email.content !== ''){
               $scope.fireRequired = false;
               mailService.send(email).success(function(){
                 $state.go('sent', {}, {reload: true});
@@ -57,7 +57,7 @@
             $scope.fireRequired = true;
             $scope.alerts.push({type: 'danger', msg: 'Fields should not be blank.'});
           }
-        }
+        };
 		}
 
 })();

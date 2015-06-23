@@ -14,7 +14,7 @@
       },
       get: function(emailId) {
         return $http.get('http://localhost:8080/emails/' + emailId).then(function(result){
-          if(result.status != 200) {
+          if(result.status !== 200) {
             return result;
           } else {
             result.data.read = true;
@@ -40,7 +40,7 @@
       deleteSent: function(emailId) {
         return $http.delete('http://localhost:8080/sent/' + emailId);
       }
-    }
+    };
   }
 
 })();

@@ -5,7 +5,7 @@
         .module('uamProject.config')
 		.controller('ConfigCtrl', ConfigCtrl);
 
-		function ConfigCtrl($scope, localStorageService) {
+		function ConfigCtrl($scope) {
         $scope.refreshTime = $scope.$parent.refreshTime;
         $scope.colors = [{name: 'red', value: 'red'},
           {name: 'blue', value: 'blue'},
