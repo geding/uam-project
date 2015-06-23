@@ -2,8 +2,12 @@
 
 angular.module('uamProject', [
   'ngAnimate', 'ngCookies', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap',
-  'uamProject.create', 'uamProject.inbox', 'uamProject.sent', 'uamProject.view'
+  'LocalStorageModule',
+  'uamProject.create', 'uamProject.inbox', 'uamProject.sent', 'uamProject.view', 'uamProject.config'
   ])
+  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
+    localStorageServiceProvider.setPrefix('MyMail');
+  }])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('inbox', {
@@ -33,6 +37,11 @@ angular.module('uamProject', [
         params: {
           type : 'inbox'
         }
+      })
+      .state('config', {
+        url: '/config',
+        templateUrl: 'app/config/config.html',
+        controller: 'ConfigCtrl'
       });
     $urlRouterProvider.when('/create/', '/create');
     $urlRouterProvider.otherwise('/inbox');

@@ -49,11 +49,14 @@
                   }
                 }
                 updateMailsList($scope.type);
-                $interval(function() {
+                var interval = $interval(function() {
                     updateMailsList($scope.type)
                     console.log('updated')
                 }, $scope.refreshTime * 1000);
 
+                $scope.$on("$destroy", function(){
+                    clearInterval(interval);
+                });
 
                 $scope.remove = function(mailId){
                   if ($scope.type == 'inbox') {

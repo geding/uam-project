@@ -6,7 +6,7 @@
 		.controller('SentCtrl', SentCtrl);
 
 		function SentCtrl($scope) {
-
+      $scope.refreshTime = $scope.$parent.refreshTime;
 		}
 
 })();

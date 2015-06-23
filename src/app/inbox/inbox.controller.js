@@ -5,10 +5,11 @@
         .module('uamProject.inbox')
 		.controller('InboxCtrl', InboxCtrl);
 
-		function InboxCtrl($scope) {
-            $scope.remove = function(){
-                console.log('in');
-            }
+		function InboxCtrl($scope, localStorageService) {
+        $scope.refreshTime = $scope.$parent.refreshTime;
+        $scope.remove = function(){
+            console.log('in');
+        }
 		}
 
 })();
